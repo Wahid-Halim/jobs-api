@@ -1,4 +1,3 @@
-const { required } = require("joi");
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
@@ -12,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a name"],
     match: [
-      /^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/,
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/,
       "Please provide a valid email",
     ],
     unique: true,
@@ -25,4 +24,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = new mongoose.Model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema);
