@@ -7,9 +7,14 @@ const register = async (req, res) => {
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const tempUser = { name, email, password: hashedPassword };
 
-  const user = await User.create(tempUser);
+  const newUser = {
+    name,
+    email,
+    password: hashedPassword,
+  };
+
+  const user = await User.create(newUser);
   res.status(StatusCodes.CREATED).json({ user });
 };
 
