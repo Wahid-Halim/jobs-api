@@ -7,10 +7,10 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     msg: err.message || "Something went wrong, try again later",
   };
 
-  // Custom API Error
-  if (err instanceof CustomAPIError) {
-    return res.status(customError.statusCode).json({ msg: customError.msg });
-  }
+  // // Custom API Error
+  // if (err instanceof CustomAPIError) {
+  //   return res.status(customError.statusCode).json({ msg: customError.msg });
+  // }
 
   // Duplicate key error (MongoDB / Mongoose)
   if (err.code === 11000) {
